@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
+import { ThemeContext } from '../contexts/ThemeContex';
 
 const Boarder = ({ border }) => {
+    const { darkMode } = useContext(ThemeContext)
     const [countryName, setCountryName] = useState();
     useEffect(() => {
         const fetchData = async () => {
@@ -13,7 +15,7 @@ const Boarder = ({ border }) => {
     }, [border])
     return (
         <Link to={`/details/${countryName}`}>
-            <button className="bg-white text-gray-500 py-2 px-4 rounded-lg shadow hover:bg-gray-100">
+            <button className={`${darkMode ? "bg-DarkBlue text-white" : "bg-white text-gray-500 hover:bg-gray-100 "} py-2 px-4 rounded-lg shadow `}>
                 {countryName}
             </button>
         </Link>

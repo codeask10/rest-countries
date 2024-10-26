@@ -13,7 +13,6 @@ const Region = ({ setRegion, countryData }) => {
         setRegions(filteredRegions);
     }, [countryData]);
 
-    console.log(regions);
 
     return (
         <div>

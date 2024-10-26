@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import SearchBar from './../filters/SearchBar';
 import Region from './../filters/Region';
 import CountryLists from './CountryLists'
 import SubRegion from './../filters/SubRegion';
 import Sort from './../filters/Sort'
+import { ThemeContext } from '../contexts/ThemeContex';
 
 const MainContent = () => {
+    const { darkMode } = useContext(ThemeContext);
     const [countryData, setCountryData] = useState([]);
     const [search, setSearch] = useState("");
     const [region, setRegion] = useState("");
@@ -25,6 +27,7 @@ const MainContent = () => {
     }, [region]);
 
     let sortedByValue = [...countryData];
+
     if (sort) {
         if (sort === "Population Asc") {
             sortedByValue.sort((a, b) => a.population - b.population);
@@ -42,8 +45,9 @@ const MainContent = () => {
     else {
         sortedByValue = [...countryData];
     }
+    console.log(darkMode);
     return (
-        <div className='p-6'>
+        <div className={`${darkMode ? "bg-VeryDarkBlue" : ""} p-6`}>
             <div className="max-w-screen-xl mx-auto mt-4 mb-12 flex flex-col md:flex-row justify-between gap-6">
                 <div className='flex-grow'>
                     <SearchBar setSearch={setSearch} />
