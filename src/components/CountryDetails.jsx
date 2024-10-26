@@ -25,8 +25,8 @@ const CountryDetails = () => {
 
     return (
         <div className={`${darkMode && "bg-VeryDarkBlue text-white"} md:h-screen h-fit`}>
-            <div className="max-w-screen-xl  mx-auto pt-2">
-                <div className=" px-7 pt-10 flex flex-col justify-center items-start gap-10">
+            <div className="max-w-screen-xl mx-auto pt-10">
+                <div className="px-5  flex flex-col justify-center items-start gap-10">
                     <Link to="/">
                         <button className={`p-3 flex justify-center gap-6 ${darkMode && "bg-DarkBlue"} text-xl font-bold  w-auto md:w-32  card shadow-lg rounded-md`} >
                             <FaArrowLeftLong className='my-1' /> Back
@@ -34,16 +34,16 @@ const CountryDetails = () => {
 
                     </Link>
 
-                    <div className="flex  lg:justify-center max-md:flex-col gap-10 ">
-                        <div className="w-full lg:w-2/4 lg:h-[30rem] ">
+                    <div className="flex w-full lg:justify-center max-md:flex-col gap-10 ">
+                        <div className="w-full lg:w-2/4  ">
                             <img className="w-full h-auto" src={countryDetail.flags.png} alt="Country Flag" />
                         </div>
 
-                        <div className="w-full lg:w-2/4">
+                        <div className="w-full lg:w-2/4 md:p-10">
                             <h2 className="text-3xl font-bold mb-5">{countryDetail.name.common}</h2>
 
                             <div className="flex flex-col gap-10 lg:flex-row justify-between mb-5">
-                                <ul className="space-y-2">
+                                <ul className="space-y-3">
                                     <li><b>Native Name: </b> {countryDetail.name.nativeName
                                         && Object.values(countryDetail.name.nativeName)[0].common
                                     }
@@ -53,7 +53,7 @@ const CountryDetails = () => {
                                     <li><b>Sub Region: </b> {countryDetail.subregion}</li>
                                     <li><b>Capital: </b> {countryDetail.capital}</li>
                                 </ul>
-                                <ul className="space-y-2 mt-4 lg:mt-0">
+                                <ul className="space-y-3 mt-4 lg:mt-0">
                                     <li><b>Top Level Domain: </b>{countryDetail.tld && countryDetail.tld.join(", ")}</li>
                                     <li><b>Currencies: </b>{countryDetail.currencies
                                         ? Object.values(countryDetail.currencies)

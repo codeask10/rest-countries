@@ -45,7 +45,6 @@ const MainContent = () => {
     else {
         sortedByValue = [...countryData];
     }
-    console.log(darkMode);
     return (
         <div className={`${darkMode ? "bg-VeryDarkBlue" : ""} p-6`}>
             <div className="max-w-screen-xl mx-auto mt-4 mb-12 flex flex-col md:flex-row justify-between gap-6">
