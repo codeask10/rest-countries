@@ -1,13 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { ThemeContext } from '../contexts/ThemeContex';
+import { config } from '../config/Config';
 
 const Boarder = ({ border }) => {
+
     const { darkMode } = useContext(ThemeContext)
     const [countryName, setCountryName] = useState();
     useEffect(() => {
         const fetchData = async () => {
-            const res = await fetch(`/api/alpha/${border}`);
+            const res = await fetch(`${config.API_BASE_URL}/alpha?codes=${border}`);
             const data = await res.json();
             setCountryName(data[0].name.common);
         }
