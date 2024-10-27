@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import DetailsPage from "./pages/DetailsPage";
 import { ThemeProvider } from "./contexts/ThemeContex";
+import NotFoundPage from "./pages/NotFoundPage";
 const App = () => {
   return (
     <>
@@ -11,6 +12,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/details/:name" element={<DetailsPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Router>
       </ThemeProvider>
