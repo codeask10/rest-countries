@@ -24,8 +24,7 @@ const CountryDetails = () => {
     }
 
     return (
-        <div className={`${darkMode && "bg-VeryDarkBlue text-white"} min-h-screen h-fit`}>
-            <div className="max-w-screen-xl mx-auto pt-10">
+            <div className={`max-w-screen-xl mx-auto pt-10 ${darkMode && "text-white"}`}>
                 <div className="px-5 xl:px-0 flex flex-col justify-center items-start gap-10">
                     <Link to="/">
                         <button className={`p-3 flex justify-center gap-3  ${darkMode ? "bg-DarkBlue" : "bg-white"} text-xl font-bold  w-auto md:w-32  card shadow-lg rounded-md`} >
@@ -82,7 +81,6 @@ const CountryDetails = () => {
                     </div>
                 </div>
             </div>
-        </div>
     );
 };
 

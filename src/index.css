@@ -5,3 +5,7 @@
 body {
     background-color: rgba(240, 240, 240, 1);
 }
+
+body.dark-mode {
+    background-color: hsl(207, 26%, 17%);
+}
