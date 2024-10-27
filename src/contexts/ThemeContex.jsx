@@ -1,18 +1,27 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 const ThemeContext = createContext();
 
 const ThemeProvider = ({ children }) => {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(
+    () => JSON.parse(localStorage.getItem("darkMode")) || false
+  );
 
   const toggleTheme = () => {
-    setDarkMode((prevMode) => !prevMode);
+    setDarkMode((prevMode) => {
+      localStorage.setItem("darkMode", JSON.stringify(!prevMode));
+      return !prevMode;
+    });
   };
 
-  const values = { darkMode, setDarkMode, toggleTheme };
+  useEffect(() => {
+    localStorage.setItem("darkMode", JSON.stringify(darkMode));
+  }, [darkMode]);
 
   return (
-    <ThemeContext.Provider value={values}>{children}</ThemeContext.Provider>
+    <ThemeContext.Provider value={{ darkMode, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
   );
 };
 
