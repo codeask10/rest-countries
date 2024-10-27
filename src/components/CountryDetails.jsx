@@ -4,7 +4,7 @@ import Boarder from './Boarder';
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { useContext } from 'react';
 import { ThemeContext } from '../contexts/ThemeContex';
-
+import { config } from '../config/Config';
 const CountryDetails = () => {
 
     const { darkMode } = useContext(ThemeContext);
@@ -12,7 +12,7 @@ const CountryDetails = () => {
     const [countryDetail, setCountryDetail] = useState();
     useEffect(() => {
         const fetchData = async () => {
-            const res = await fetch(`/api/name/${name}?fullText=true`);
+            const res = await fetch(`${config.API_BASE_URL}/name/${name}?fullText=true`);
             const data = await res.json();
             setCountryDetail(data[0]);
         };
@@ -24,19 +24,23 @@ const CountryDetails = () => {
     }
 
     return (
-        <div className={`${darkMode && "bg-VeryDarkBlue text-white"} md:h-screen h-fit`}>
+        <div className={`${darkMode && "bg-VeryDarkBlue text-white"} min-h-screen h-fit`}>
             <div className="max-w-screen-xl mx-auto pt-10">
-                <div className="px-5  flex flex-col justify-center items-start gap-10">
+                <div className="px-5 xl:px-0 flex flex-col justify-center items-start gap-10">
                     <Link to="/">
-                        <button className={`p-3 flex justify-center gap-6 ${darkMode && "bg-DarkBlue"} text-xl font-bold  w-auto md:w-32  card shadow-lg rounded-md`} >
+                        <button className={`p-3 flex justify-center gap-3  ${darkMode ? "bg-DarkBlue" : "bg-white"} text-xl font-bold  w-auto md:w-32  card shadow-lg rounded-md`} >
                             <FaArrowLeftLong className='my-1' /> Back
                         </button>
 
                     </Link>
 
                     <div className="flex w-full lg:justify-center max-md:flex-col gap-10 ">
-                        <div className="w-full lg:w-2/4  ">
-                            <img className="w-full h-auto" src={countryDetail.flags.png} alt="Country Flag" />
+                        <div className="w-full lg:w-2/4">
+                            <img
+                                className="w-full min-w-[300px] object-fit object-center mb-12 aspect-[16/9]"
+                                src={countryDetail.flags.png}
+                                alt="Country Flag"
+                            />
                         </div>
 
                         <div className="w-full lg:w-2/4 md:p-10">
