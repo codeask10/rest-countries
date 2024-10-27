@@ -5,6 +5,8 @@ import CountryLists from './CountryLists'
 import SubRegion from './../filters/SubRegion';
 import Sort from './../filters/Sort'
 import { ThemeContext } from '../contexts/ThemeContex';
+import { config } from '../config/Config';
+import { sortCountries } from '../utility/Sort';
 
 const MainContent = () => {
     const { darkMode } = useContext(ThemeContext);
@@ -15,7 +17,7 @@ const MainContent = () => {
     const [sort, setSort] = useState("");
     useEffect(() => {
         const fetchData = async () => {
-            const res = await fetch("/api/all");
+            const res = await fetch(`${config.API_BASE_URL}/all`);
             const data = await res.json();
             setCountryData(data);
         }
@@ -26,25 +28,7 @@ const MainContent = () => {
         setSubRegion("");
     }, [region]);
 
-    let sortedByValue = [...countryData];
-
-    if (sort) {
-        if (sort === "Population Asc") {
-            sortedByValue.sort((a, b) => a.population - b.population);
-        }
-        else if (sort === "Population Desc") {
-            sortedByValue.sort((a, b) => b.population - a.population);
-        }
-        else if (sort === "Area Asc") {
-            sortedByValue.sort((a, b) => a.area - b.area);
-        }
-        else {
-            sortedByValue.sort((a, b) => b.area - a.area);
-        }
-    }
-    else {
-        sortedByValue = [...countryData];
-    }
+    const sortedByValue = sort ? sortCountries(countryData, sort) : [...countryData]
     return (
         <div className={`${darkMode ? "bg-VeryDarkBlue" : ""} p-6`}>
             <div className="max-w-screen-xl mx-auto mt-4 mb-12 flex flex-col md:flex-row justify-between gap-6">
