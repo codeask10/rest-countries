@@ -8,7 +8,7 @@ const CountryCard = ({ name, flags, population, region, capital }) => {
     <div
       className={`max-w-xs  ${
         darkMode ? "bg-DarkBlue border-DarkBlue" : "bg-white border-gray-200"
-      } border box-border  rounded-lg shadow`}
+      } border box-border  rounded-lg shadow-md`}
     >
       <Link to={`/details/${name}`}>
         <img
